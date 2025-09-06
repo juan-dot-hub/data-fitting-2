@@ -6,18 +6,12 @@ import matplotlib.font_manager as fm
 import warnings
 warnings.filterwarnings('ignore')
 
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
 
-
-import matplotlib.pyplot as plt
-import matplotlib.font_manager as fm
-
-import matplotlib.pyplot as plt
 plt.rcParams['font.family'] = 'DejaVu Sans'
 plt.rcParams['axes.unicode_minus'] = False
+
+# font_prop 변수 정의 (DejaVu Sans 기준)
+font_prop = fm.FontProperties(family='DejaVu Sans')
 
 
 
