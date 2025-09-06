@@ -6,10 +6,19 @@ import matplotlib.font_manager as fm
 import warnings
 warnings.filterwarnings('ignore')
 
-# 한글 폰트 설정
-font_path = "C:/Windows/Fonts/malgun.ttf"
-font_prop = fm.FontProperties(fname=font_path)
-plt.rcParams['axes.unicode_minus'] = False
+import streamlit as st
+import numpy as np
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
+
+try:
+    font_path = "C:/Windows/Fonts/malgun.ttf"
+    font_prop = fm.FontProperties(fname=font_path)
+    plt.rcParams['font.family'] = font_prop.get_name()
+except Exception:
+    plt.rcParams['font.family'] = 'NanumGothic'
+
 
 def kepler_equation(E, M, e):
     return E - e * np.sin(E) - M
