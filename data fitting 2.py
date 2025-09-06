@@ -12,12 +12,17 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 
+import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
+
 try:
     font_path = "C:/Windows/Fonts/malgun.ttf"
     font_prop = fm.FontProperties(fname=font_path)
     plt.rcParams['font.family'] = font_prop.get_name()
 except Exception:
-    plt.rcParams['font.family'] = 'NanumGothic'
+    plt.rcParams['font.family'] = 'NanumGothic'  # 클라우드 기본 한글 폰트
+plt.rcParams['axes.unicode_minus'] = False
+
 
 
 def kepler_equation(E, M, e):
