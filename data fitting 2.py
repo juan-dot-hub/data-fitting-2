@@ -15,13 +15,10 @@ import matplotlib.font_manager as fm
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-try:
-    font_path = "C:/Windows/Fonts/malgun.ttf"
-    font_prop = fm.FontProperties(fname=font_path)
-    plt.rcParams['font.family'] = font_prop.get_name()
-except Exception:
-    plt.rcParams['font.family'] = 'NanumGothic'  # 클라우드 기본 한글 폰트
+import matplotlib.pyplot as plt
+plt.rcParams['font.family'] = 'DejaVu Sans'
 plt.rcParams['axes.unicode_minus'] = False
+
 
 
 
