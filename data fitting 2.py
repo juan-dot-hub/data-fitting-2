@@ -102,17 +102,17 @@ except Exception:
     st.stop()
 
 if st.button("피팅 실행"):
-    results1 = fit_and_plot(t_data1, vr_observed1, "데이터 세트 1")
-    results2 = fit_and_plot(t_data2, vr_observed2, "데이터 세트 2")
+    results1 = fit_and_plot(t_data1, vr_observed1, "data set 1")
+    results2 = fit_and_plot(t_data2, vr_observed2, "data set 2")
     
     # 그래프 그리기
     fig, axs = plt.subplots(2, 1, figsize=(10, 8), gridspec_kw={'height_ratios': [3, 1]})
-    axs[0].errorbar(results1[0], results1[1], yerr=1.5, fmt='ro', label=f'{results1[4]} 관측')
-    axs[0].plot(results1[0], results1[2], 'r-', label=f'{results1[4]} 피팅곡선')
-    axs[0].errorbar(results2[0], results2[1], yerr=1.5, fmt='bo', label=f'{results2[4]} 관측')
-    axs[0].plot(results2[0], results2[2], 'b-', label=f'{results2[4]} 피팅곡선')
-    axs[0].set_title('시선속도 곡선 (데이터 세트 1 & 2)', fontproperties=font_prop)
-    axs[0].set_ylabel('시선속도 (km/s)', fontproperties=font_prop)
+    axs[0].errorbar(results1[0], results1[1], yerr=1.5, fmt='ro', label=f'{results1[4]} observed')
+    axs[0].plot(results1[0], results1[2], 'r-', label=f'{results1[4]} fittid curve')
+    axs[0].errorbar(results2[0], results2[1], yerr=1.5, fmt='bo', label=f'{results2[4]} observed')
+    axs[0].plot(results2[0], results2[2], 'b-', label=f'{results2[4]} fitted curve')
+    axs[0].set_title('RV Curve (data set 1 & 2)', fontproperties=font_prop)
+    axs[0].set_ylabel('RV (km/s)', fontproperties=font_prop)
     axs[0].legend(prop=font_prop)
     axs[0].grid(True, alpha=0.3)
     plt.tight_layout()
