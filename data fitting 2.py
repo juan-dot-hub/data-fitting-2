@@ -98,4 +98,4 @@ if st.button("피팅 실행"):
     axs.grid(True, alpha=0.3)
     plt.tight_layout()
     st.pyplot(fig)
-이 코드에서 각각의 그래프의 극댓값과 극솟값에서 감마를 뺀 값의 절댓값을 알려주는 기능 추가해줘
+
