@@ -70,42 +70,14 @@ def fit_and_plot(t_data, vr_observed, label_prefix):
     st.write(f"t₀ = {fitted_t0:.2f} ± {np.sqrt(pcov[5, 5]):.2f} days")
     st.write(f"RMS 잔차 = {rms:.2f} km/s")
     
-    return t_data, vr_observed, vr_model, residuals, label_prefix
+    # gamma 값도 같이 리턴
+    return t_data, vr_observed, vr_model, residuals, label_prefix, fitted_gamma
 
-st.title("시선속도 데이터 피팅")
-
-st.markdown("### 데이터 세트 1 입력")
-t_data1_input = st.text_area("시간 데이터 (콤마로 구분)", 
-                            value="0.0, 1.32, 2.63, 3.95, 5.26, 6.58, 7.89, 9.21, 10.53, 11.84, 13.16, 14.47, 15.79, 17.11, 18.42, 19.74, 21.05, 22.37, 23.68, 25.0",
-                            key="t_data1")
-
-vr_observed1_input = st.text_area("시선속도 데이터 (콤마로 구분)", 
-                                 value="25.22, 7.97, 0.89, 0.87, 0.05, 3.67, 11.55, 17.17, 23.62, 29.54, 15.46, 2.13, -0.94, -3.65, -0.57, 5.56, 10.86, 20.56, 26.51, 22.35",
-                                 key="vr_data1")
-
-st.markdown("### 데이터 세트 2 입력 (직접 입력)")
-t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", 
-                            value=t_data1_input,
-                            key="t_data2")
-
-vr_observed2_input = st.text_area("시선속도 데이터 (콤마로 구분)", 
-                                 value="",
-                                 key="vr_data2")
-
-try:
-    t_data1 = np.array([float(x) for x in t_data1_input.split(",")])
-    vr_observed1 = np.array([float(x) for x in vr_observed1_input.split(",")])
-    t_data2 = np.array([float(x) for x in t_data2_input.split(",")])
-    vr_observed2 = np.array([float(x) for x in vr_observed2_input.split(",")])
-except Exception:
-    st.error("입력 데이터는 콤마로 구분된 숫자여야 합니다.")
-    st.stop()
-
+# 버튼 클릭 후 처리부분 수정
 if st.button("피팅 실행"):
     results1 = fit_and_plot(t_data1, vr_observed1, "data set 1")
     results2 = fit_and_plot(t_data2, vr_observed2, "data set 2")
     
-    # 그래프 그리기
     fig, axs = plt.subplots(1, 1, figsize=(10, 8))
     axs.errorbar(results1[0], results1[1], yerr=1.5, fmt='ro', label=f'{results1[4]} observed')
     axs.plot(results1[0], results1[2], 'r-', label=f'{results1[4]} fitted curve')
@@ -117,4 +89,16 @@ if st.button("피팅 실행"):
     axs.grid(True, alpha=0.3)
     plt.tight_layout()
     st.pyplot(fig)
+
+    # 극댓값과 극솟값에서 감마 뺀 절댓값 계산 및 출력
+    max_diff_1 = abs(np.max(results1[2]) - results1[5])
+    min_diff_1 = abs(np.min(results1[2]) - results1[5])
+    max_diff_2 = abs(np.max(results2[2]) - results2[5])
+    min_diff_2 = abs(np.min(results2[2]) - results2[5])
+
+    st.write(f"### {results1[4]} 감마 보정 후 극댓값 차이: {max_diff_1:.2f} km/s")
+    st.write(f"### {results1[4]} 감마 보정 후 극솟값 차이: {min_diff_1:.2f} km/s")
+    st.write(f"### {results2[4]} 감마 보정 후 극댓값 차이: {max_diff_2:.2f} km/s")
+    st.write(f"### {results2[4]} 감마 보정 후 극솟값 차이: {min_diff_2:.2f} km/s")
+
 
