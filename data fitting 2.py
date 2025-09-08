@@ -93,7 +93,7 @@ if __name__ == '__main__':
     st.markdown("---")
     st.markdown("### 데이터 세트 2 입력 (직접 입력)")
     t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", 
-                                 value=t_data1_input,
+                                 value="",
                                  key="t_data2")
     vr_observed2_input = st.text_area("시선속도 데이터 (콤마로 구분)", 
                                      value="",
@@ -110,7 +110,6 @@ if __name__ == '__main__':
 
     if st.button("피팅 실행"):
         results1 = fit_and_plot(t_data1, vr_observed1, "data set 1")
-        results2 = fit_and_plot(t_data2, vr_observed2, "data set 2")
         
         # 그래프 그리기
         fig, axs = plt.subplots(1, 1, figsize=(10, 8))
@@ -120,7 +119,8 @@ if __name__ == '__main__':
         axs.plot(results1[2], results1[3], 'r-', label=f'{results1[4]} fitted curve')
         
         # Dataset 2가 비어 있지 않을 경우에만 그래프에 추가
-        if len(results2[0]) > 0:
+        if len(vr_observed2) > 0 and len(t_data2) > 0:
+            results2 = fit_and_plot(t_data2, vr_observed2, "data set 2")
             axs.errorbar(results2[0], results2[1], yerr=1.5, fmt='bo', label=f'{results2[4]} observed')
             axs.plot(results2[2], results2[3], 'b-', label=f'{results2[4]} fitted curve')
         
