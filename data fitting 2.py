@@ -82,22 +82,24 @@ def fit_and_plot(t_data, vr_observed, label_prefix):
 
 if __name__ == '__main__':
     st.title("시선속도 데이터 피팅")
+
+
     st.markdown("### 데이터 세트 1 입력")
     t_data1_input = st.text_area("시간 데이터 (콤마로 구분)", 
-                                 value="0.0, 1.32, 2.63, 3.95, 5.26, 6.58, 7.89, 9.21, 10.53, 11.84, 13.16, 14.47, 15.79, 17.11, 18.42, 19.74, 21.05, 22.37, 23.68, 25.0",
+                                 value="",
                                  key="t_data1")
     vr_observed1_input = st.text_area("시선속도 데이터 (콤마로 구분)", 
-                                     value="25.22, 7.97, 0.89, 0.87, 0.05, 3.67, 11.55, 17.17, 23.62, 29.54, 15.46, 2.13, -0.94, -3.65, -0.57, 5.56, 10.86, 20.56, 26.51, 22.35",
-                                     key="vr_data1")
+                                      value="",
+                                      key="vr_data1")
 
     st.markdown("---")
     st.markdown("### 데이터 세트 2 입력 (직접 입력)")
     t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", 
-                                 value="",
+                                 value=t_data1_input,
                                  key="t_data2")
     vr_observed2_input = st.text_area("시선속도 데이터 (콤마로 구분)", 
-                                     value="",
-                                     key="vr_data2")
+                                      value="",
+                                      key="vr_data2")
 
     try:
         t_data1 = np.array([float(x) for x in t_data1_input.split(",")])
@@ -110,6 +112,7 @@ if __name__ == '__main__':
 
     if st.button("피팅 실행"):
         results1 = fit_and_plot(t_data1, vr_observed1, "data set 1")
+        results2 = fit_and_plot(t_data2, vr_observed2, "data set 2")
         
         # 그래프 그리기
         fig, axs = plt.subplots(1, 1, figsize=(10, 8))
@@ -119,8 +122,7 @@ if __name__ == '__main__':
         axs.plot(results1[2], results1[3], 'r-', label=f'{results1[4]} fitted curve')
         
         # Dataset 2가 비어 있지 않을 경우에만 그래프에 추가
-        if len(vr_observed2) > 0 and len(t_data2) > 0:
-            results2 = fit_and_plot(t_data2, vr_observed2, "data set 2")
+        if len(results2[0]) > 0:
             axs.errorbar(results2[0], results2[1], yerr=1.5, fmt='bo', label=f'{results2[4]} observed')
             axs.plot(results2[2], results2[3], 'b-', label=f'{results2[4]} fitted curve')
         
