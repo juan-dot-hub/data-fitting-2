@@ -33,7 +33,7 @@ def fit_and_plot(t_data, vr_observed, label_prefix):
         (np.max(vr_observed) - np.min(vr_observed)) / 2,
         40,
         0.4,
-        2*np.pi,
+        0.5*np.pi,
         0.0
     ]
     bounds = (
