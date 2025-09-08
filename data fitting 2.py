@@ -31,9 +31,9 @@ def fit_and_plot(t_data, vr_observed, label_prefix):
     initial_guess = [
         np.mean(vr_observed),
         (np.max(vr_observed) - np.min(vr_observed)) / 2,
-        15.0,
-        0.2,
-        0.5,
+        40,
+        0.4,
+        2*np.pi,
         0.0
     ]
     bounds = (
