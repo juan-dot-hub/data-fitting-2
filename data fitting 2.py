@@ -152,7 +152,7 @@ if __name__ == '__main__':
 
     st.markdown("---")
     st.markdown("### 데이터 세트 2 입력")
-    t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", value="t_data1_input", key="t_data2")
+    t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", value=t_data1_input, key="t_data2")
     vr_observed2_input = st.text_area("시선속도 데이터 (콤마로 구분)", value="", key="vr_data2")
     
     try:
