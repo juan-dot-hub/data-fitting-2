@@ -147,13 +147,13 @@ if __name__ == '__main__':
     st.title("시선속도 데이터 피팅")
     
     st.markdown("### 데이터 세트 1 입력")
-    t_data1_input = st.text_area("시간 데이터 (콤마로 구분)", value="0.0, 10.0, 20.0, 30.0, 40.0", key="t_data1")
-    vr_observed1_input = st.text_area("시선속도 데이터 (콤마로 구분)", value="-5.0, -15.0, -20.0, -18.0, -10.0", key="vr_data1")
- 
+    t_data1_input = st.text_area("시간 데이터 (콤마로 구분)", value="", key="t_data1")
+    vr_observed1_input = st.text_area("시선속도 데이터 (콤마로 구분)", value="", key="vr_data1")
+
     st.markdown("---")
     st.markdown("### 데이터 세트 2 입력")
-    t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", value="100.0, 110.0, 120.0, 130.0, 140.0", key="t_data2")
-    vr_observed2_input = st.text_area("시선속도 데이터 (콤마로 구분)", value="-10.0, 0.0, 10.0, 12.0, 5.0", key="vr_data2")
+    t_data2_input = st.text_area("시간 데이터 (콤마로 구분)", value="t_data1_input", key="t_data2")
+    vr_observed2_input = st.text_area("시선속도 데이터 (콤마로 구분)", value="", key="vr_data2")
     
     try:
         t_data1 = np.array([float(x) for x in t_data1_input.split(",")])
