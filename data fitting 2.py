@@ -104,13 +104,9 @@ def fit_and_plot(t_data1, vr_observed1, t_data2, vr_observed2):
     
     st.write("### 데이터 세트 1 개별 결과")
     st.write(f"K = {fitted_K1:.2f} ± {np.sqrt(pcov[1, 1]):.2f} km/s")
-    st.write(f"ω = {fitted_omega1:.3f} ± {np.sqrt(pcov[4, 4]):.3f} rad")
-    st.write(f"t₀ = {fitted_t01:.2f} ± {np.sqrt(pcov[5, 5]):.2f} days")
     
     st.write("### 데이터 세트 2 개별 결과")
     st.write(f"K = {fitted_K2:.2f} ± {np.sqrt(pcov[6, 6]):.2f} km/s")
-    st.write(f"ω = {fitted_omega2:.3f} ± {np.sqrt(pcov[7, 7]):.3f} rad")
-    st.write(f"t₀ = {fitted_t02:.2f} ± {np.sqrt(pcov[8, 8]):.2f} days")
     
     # 모델 곡선을 부드럽게 그리기 위해 더 촘촘한 시간 배열 생성
     t_model1 = np.linspace(min(t_data1), max(t_data1), 500) if t_data1.size > 0 else np.array([])
