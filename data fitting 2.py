@@ -127,16 +127,16 @@ def fit_and_plot(t_data1, vr_observed1, t_data2, vr_observed2):
     fig, axs = plt.subplots(1, 1, figsize=(10, 8))
     
     # 데이터 세트 1 그래프
-    axs.errorbar(t_data1, vr_observed1, yerr=1.5, fmt='ro', label='데이터 세트 1 (관측값)')
-    axs.plot(t_model1, vr_model1, 'r-', label='데이터 세트 1 (피팅 곡선)')
+    axs.errorbar(t_data1, vr_observed1, yerr=1.5, fmt='ro', label='data set 1 (관측값)')
+    axs.plot(t_model1, vr_model1, 'r-', label='data set 1 (fitted)')
     
     # 데이터 세트 2 그래프
-    axs.errorbar(t_data2, vr_observed2, yerr=1.5, fmt='bo', label='데이터 세트 2 (관측값)')
-    axs.plot(t_model2, vr_model2, 'b-', label='데이터 세트 2 (피팅 곡선)')
+    axs.errorbar(t_data2, vr_observed2, yerr=1.5, fmt='bo', label='data set 2 (관측값)')
+    axs.plot(t_model2, vr_model2, 'b-', label='data set 2 (fitted)')
     
-    axs.set_title('시선속도 곡선', fontproperties=font_prop)
-    axs.set_xlabel('시간 (일)', fontproperties=font_prop)
-    axs.set_ylabel('시선속도 (km/s)', fontproperties=font_prop)
+    axs.set_title('RV curve', fontproperties=font_prop)
+    axs.set_xlabel('time', fontproperties=font_prop)
+    axs.set_ylabel('RV (km/s)', fontproperties=font_prop)
     axs.legend(prop=font_prop)
     axs.grid(True, alpha=0.3)
     plt.tight_layout()
